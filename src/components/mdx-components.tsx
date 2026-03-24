@@ -15,6 +15,68 @@ export const FadeIn = ({ duration = 1, delay = 0, translateY = "20px", children 
   </motion.div>
 );
 
+export const TimelineOrbit = ({ children }: { children: ReactNode }) => (
+  <div className="relative max-w-4xl mx-auto flex flex-col items-center">
+    <div className="absolute top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent left-1/2 transform -translate-x-1/2 z-0" />
+    <div className="relative z-10 w-full flex flex-col items-center">
+      {children}
+    </div>
+  </div>
+);
+
+export const TimelineConnector = () => (
+  <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_rgba(69,162,158,0.8)] z-20 relative" />
+);
+
+export const Quote = ({ align = "left", variant = "default", children }: { align?: string, variant?: string, children: ReactNode }) => (
+  <blockquote className={`text-xl md:text-2xl lg:text-3xl font-serif italic text-white/60 leading-relaxed ${align === 'center' ? 'text-center' : 'text-left'} ${variant === 'glass' ? 'p-8 md:p-12 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl mx-auto max-w-4xl shadow-[0_0_30px_rgba(255,255,255,0.02)]' : 'border-l-4 border-primary/50 pl-6'}`}>
+    {children}
+  </blockquote>
+);
+
+type GlassNodeProps = {
+  role?: string;
+  organization?: string;
+  type?: string;
+  location?: string;
+  date?: string;
+  glow?: string;
+  children: ReactNode;
+};
+
+export const GlassNode = ({ role, organization, type, location, date, glow, children }: GlassNodeProps) => {
+  const glowShadow = glow === 'emerald' ? 'shadow-[0_0_40px_rgba(16,185,129,0.1)]' : 
+                     glow === 'blue' ? 'shadow-[0_0_40px_rgba(59,130,246,0.1)]' : 
+                     'shadow-[0_0_40px_rgba(255,255,255,0.05)]';
+  
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className={`bg-[#0B0C10]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 md:p-10 w-full max-w-3xl ${glowShadow} hover:bg-white/[0.03] transition-all duration-500 relative overflow-hidden`}
+    >
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50" />
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+        <div>
+          <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 leading-tight">{role}</h3>
+          <p className="text-primary font-medium tracking-wide uppercase text-sm">{organization} {location && <span className="text-white/40 ml-2 font-normal">| {location}</span>}</p>
+        </div>
+        {(type || date) && (
+          <div className="text-left md:text-right shrink-0">
+            {type && <span className="inline-block bg-white/5 px-4 py-1.5 rounded-full text-xs tracking-wider uppercase text-white/80 border border-white/10 font-medium">{type}</span>}
+            {date && <p className="text-white/40 text-xs mt-3 uppercase tracking-wider">{date}</p>}
+          </div>
+        )}
+      </div>
+      <div className="text-white/60 font-light leading-relaxed text-sm md:text-base space-y-4">
+        {children}
+      </div>
+    </motion.div>
+  );
+};
+
 export const Badge = ({ text, glow }: { text: ReactNode, glow?: string }) => (
   <div className={`inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase border border-white/20 bg-white/5 backdrop-blur-md ${glow === 'gold' ? 'shadow-[0_0_20px_rgba(255,215,0,0.2)] text-[#FFD700]' : 'text-primary'}`}>
     {text}

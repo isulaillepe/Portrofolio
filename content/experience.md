@@ -1,0 +1,59 @@
+---
+title: "Trajectory"
+layout: "timeline-float"
+description: "Global impact and technical leadership."
+---
+
+# Global Impact & Leadership.
+
+_Engineering cross-cultural ecosystems and digital workflows._
+
+<Spacer height="5rem" />
+
+<TimelineOrbit>
+
+<GlassNode
+role="Initiative Group Vice President (IGVP) – Product Marketing"
+organization="AIESEC in Saegis"
+type="Leadership & Engineering"
+glow="blue"
+
+>
+
+    Spearheading product marketing strategies for the Global Volunteer and Global Internship programs to drive youth participation in cross-cultural exchanges.
+
+    Operating at the intersection of marketing and technical development, I manage end-to-end digital campaigns to increase program awareness—including driving the marketing engine for major leadership events like LeaCon. To optimize our internal workflows, I engineered a custom web-based flyer automation tool, drastically reducing manual design friction while enforcing strict brand consistency across all global promotional assets.
+
+  </GlassNode>
+
+  <Spacer height="2rem" />
+
+  <TimelineConnector />
+
+  <Spacer height="2rem" />
+
+<GlassNode
+role="Web Developer (Global Volunteer)"
+organization="Citizens for Animals"
+location="Hyderabad, India"
+date="July 2025"
+type="International Deployment"
+glow="emerald"
+
+>
+
+    Deployed on a 6-week international volunteering internship focused on digital capacity building for a non-profit organization.
+
+    Took full architectural ownership of designing and developing their central marketing website to elevate their global online presence. This immersive deployment served as a crucible for my technical development and project management capabilities, demanding fluid communication, rapid iteration, and seamless collaboration within a highly diverse, cross-cultural environment.
+
+  </GlassNode>
+
+</TimelineOrbit>
+
+<Spacer height="6rem" />
+
+<FadeIn duration={2}>
+  <Quote align="center" variant="glass">
+    "True elegant engineering doesn't just solve problems; it removes friction from human experiences."
+  </Quote>
+</FadeIn>
