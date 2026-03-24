@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import Link from "next/link";
 
-export const FadeIn = ({ duration = 1, delay = 0, translateY = "20px", children }: any) => (
+export const FadeIn = ({ duration = 1, delay = 0, translateY = "20px", children }: { duration?: number, delay?: number, translateY?: string, children: ReactNode }) => (
   <motion.div
     initial={{ opacity: 0, y: translateY }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -15,7 +15,7 @@ export const FadeIn = ({ duration = 1, delay = 0, translateY = "20px", children 
   </motion.div>
 );
 
-export const Badge = ({ text, glow }: any) => (
+export const Badge = ({ text, glow }: { text: ReactNode, glow?: string }) => (
   <div className={`inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase border border-white/20 bg-white/5 backdrop-blur-md ${glow === 'gold' ? 'shadow-[0_0_20px_rgba(255,215,0,0.2)] text-[#FFD700]' : 'text-primary'}`}>
     {text}
   </div>
@@ -27,7 +27,7 @@ export const ButtonGroup = ({ children }: { children: ReactNode }) => (
   </div>
 );
 
-export const Button = ({ href, variant, children }: any) => {
+export const Button = ({ href, variant, children }: { href?: string, variant?: string, children: ReactNode }) => {
   const base = "px-8 py-4 rounded-full font-sans font-medium transition-all duration-300 transform hover:-translate-y-1 inline-block text-center";
   const styles = variant === "glass-gilded" 
     ? "bg-white/10 backdrop-blur-lg border border-white/20 text-white shadow-[0_0_30px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.3)] hover:border-[#FFD700]/50" 
