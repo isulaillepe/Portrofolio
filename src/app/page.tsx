@@ -1,10 +1,12 @@
+import { ComponentProps } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { getMdxContent } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { 
   Spacer, ProjectShowcase, GlassCard, ParallaxText, 
-  TextColumn, TechStackCloud, TechItem 
+  TextColumn, TechStackCloud, TechItem,
+  FadeIn, Badge, ButtonGroup, Button
 } from "@/components/mdx-components";
 
 const mdxComponents = {
@@ -15,19 +17,26 @@ const mdxComponents = {
   TextColumn,
   TechStackCloud,
   TechItem,
-  h1: (props: any) => <h1 className="font-serif text-5xl md:text-6xl font-medium text-white mb-8" {...props} />,
-  h2: (props: any) => <h2 className="font-serif text-3xl text-white mb-6 uppercase tracking-wider" {...props} />,
-  p: (props: any) => <p className="text-white/60 font-light leading-relaxed mb-6" {...props} />,
+  FadeIn,
+  Badge,
+  ButtonGroup,
+  Button,
+  h1: (props: ComponentProps<'h1'>) => <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white mb-6 leading-[1.1]" {...props} />,
+  h2: (props: ComponentProps<'h2'>) => <h2 className="font-serif text-3xl text-white mb-6 uppercase tracking-wider" {...props} />,
+  p: (props: ComponentProps<'p'>) => <p className="text-white/60 font-light leading-relaxed mb-6" {...props} />,
 };
 
 export default function Home() {
+  const indexMdx = getMdxContent("index");
   const aboutMdx = getMdxContent("about");
   const projectsMdx = getMdxContent("projects");
 
   return (
     <main className="min-h-screen bg-background selection:bg-primary/30 relative">
       <Navbar />
-      <Hero />
+      <Hero>
+        {indexMdx && <MDXRemote source={indexMdx.content} components={mdxComponents} />}
+      </Hero>
       
       {aboutMdx && (
         <section id="about" className="py-32 px-6 max-w-7xl mx-auto relative z-10">

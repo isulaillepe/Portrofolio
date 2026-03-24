@@ -2,6 +2,42 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import Link from "next/link";
+
+export const FadeIn = ({ duration = 1, delay = 0, translateY = "20px", children }: any) => (
+  <motion.div
+    initial={{ opacity: 0, y: translateY }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration, delay, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+);
+
+export const Badge = ({ text, glow }: any) => (
+  <div className={`inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase border border-white/20 bg-white/5 backdrop-blur-md ${glow === 'gold' ? 'shadow-[0_0_20px_rgba(255,215,0,0.2)] text-[#FFD700]' : 'text-primary'}`}>
+    {text}
+  </div>
+);
+
+export const ButtonGroup = ({ children }: { children: ReactNode }) => (
+  <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8">
+    {children}
+  </div>
+);
+
+export const Button = ({ href, variant, children }: any) => {
+  const base = "px-8 py-4 rounded-full font-sans font-medium transition-all duration-300 transform hover:-translate-y-1 inline-block text-center";
+  const styles = variant === "glass-gilded" 
+    ? "bg-white/10 backdrop-blur-lg border border-white/20 text-white shadow-[0_0_30px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.3)] hover:border-[#FFD700]/50" 
+    : "bg-transparent border border-white/10 text-white/80 hover:bg-white/5 hover:text-white";
+  return href ? (
+    <Link href={href} className={`${base} ${styles}`}>{children}</Link>
+  ) : (
+    <button className={`${base} ${styles}`}>{children}</button>
+  );
+};
 
 export const Spacer = ({ height }: { height: string }) => <div style={{ height }} />;
 

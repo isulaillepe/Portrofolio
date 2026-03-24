@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-export default function Hero() {
+export default function Hero({ children }: { children?: ReactNode }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 text-foreground">
       {/* Background Glows */}
@@ -16,39 +16,7 @@ export default function Hero() {
       />
       
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight mb-8 leading-[1.1]">
-            <span className="block text-white">Isula Illeperuma:</span>
-            <span className="block text-muted/80">Engineering the Future.</span>
-          </h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg md:text-xl text-white/50 max-w-2xl mx-auto font-sans font-light tracking-wide mb-12"
-          >
-            Full-Stack Engineer & Product Marketing Leader specializing in high-performance, Techno-Minimalist solutions.
-          </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
-          >
-            <button className="w-full sm:w-auto px-8 py-4 bg-primary text-background font-sans font-semibold rounded-full hover:bg-white transition-all duration-300 cursor-pointer shadow-[0_0_40px_rgba(69,162,158,0.25)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] hover:-translate-y-1">
-              View Experience
-            </button>
-            <button className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/10 text-white font-sans font-medium rounded-full hover:bg-white/5 transition-all duration-300 cursor-pointer hover:-translate-y-1">
-              Let's Connect
-            </button>
-          </motion.div>
-        </motion.div>
+        {children}
       </div>
     </section>
   );
